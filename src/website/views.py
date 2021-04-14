@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.forms.models import model_to_dict
 
 import json
+import random
 # Create your views here.
 
 def index(request):
@@ -19,11 +20,28 @@ def show_index(request):
     login_user = request.session.get('username')
     if login_user :
         if request.method == 'POST':
-            img_file = request.FILES.get('img_file')
-            with open('upload/' + login_user + '_' + img_file.name,'wb') as pic:
-                for c in img_file:
-                    pic.write(c)
-            return HttpResponse("upload success")
+            username = login_user
+            goodsname = request.POST['goodsname']
+            goodsinformation = request.POST['goodsinfo']
+            goodsprice = request.POST['goodsprice']
+            goodspic = request.FILES.get('goodspic')
+            goodsId = []
+            goodsID = ''.join(str(i) for i in random.sample(range(0,9),8))
+
+            from database.models import goodsinfo
+            goods_info = goodsinfo()
+            goods_info.goodID = goodsID
+            goods_info.username = username
+            goods_info.goodsname = goodsname
+            goods_info.goodsinfo = goodsinformation
+            goods_info.goodsprice = goodsprice
+            goods_info.goodspic = goodspic
+            try:
+                goods_info.save()
+                return HttpResponse("上传成功，这是您的产品编号："+ goodsID )
+            except:
+                return HttpResponse("上传失败")
+            # return HttpResponse("upload success")
         else:
             return render(request,'index_show.html')
     else:
