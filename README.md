@@ -3,6 +3,8 @@
 <p>正在开发中！萌新开发不喜勿喷希望dalao给出指点！
 <p>感谢与你的相遇！！
 
+<p>所需Python包：Django、mysqlclient、pymysql、pillow
+
 <p>-----v0.2 update in 20.4.14
 <p>新增商品表（待完善）
 <p>新增商品上传功能（待修改完善）

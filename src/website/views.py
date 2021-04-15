@@ -103,6 +103,8 @@ def reg_index(request):
         return render(request,'index_register.html')
 
 def logout_index(request):
+    login_user = request.session.get('username')
+    print(login_user,"已登出")
     request.session.flush()
     return render(request,'index_logout.html')
 
@@ -111,3 +113,18 @@ def user_index(request):
 
 def admin_index(request):
     return render(request,'index_admin.html')
+
+def admin_user_index(request):
+    from database.models import user
+    userinfo = user.objects.all()
+    userdata = []
+    for user in userinfo:
+        userdata.append(user.id)
+        userdata.append(user.username)
+        userdata.append(user.password)
+        userdata.append(user.identity)
+    print(userdata)
+    return render(request,'index_admin_user.html',context={'userdata':userdata})
+
+def admin_goods_index(request):
+    return render(request,'index_admin_goods.html')

@@ -7,6 +7,8 @@ from website.views import test_index
 from website.views import logout_index
 from website.views import user_index
 from website.views import admin_index
+from website.views import admin_user_index
+from website.views import admin_goods_index
 
 
 urlpatterns = [
@@ -19,4 +21,6 @@ urlpatterns = [
     path('logout_index',logout_index,name='logout_index'),
     path('user_index',user_index,name='user_index'),
     path('admin_index',admin_index,name='admin_index'),
+    path('admin_user_index',admin_user_index,name='admin_user_index'),
+    path('admin_goods_index',admin_goods_index,name='admin_goods_index'),
 ]

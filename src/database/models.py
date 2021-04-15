@@ -17,3 +17,4 @@ class goodsinfo(models.Model):
     goodsinfo = models.CharField(max_length=300)
     goodsprice = models.FloatField(max_length=10)
     goodspic = models.ImageField(upload_to='upload/',default='default.jpg')
+    goodssubmit = models.CharField(max_length=10,default="0")

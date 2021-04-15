@@ -26,29 +26,31 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'login_index' %}">管理列表</a></li>
-                    <li>
-                        <a href="{% url 'index' %}">主页</a>
-                    </li>
-                    <li><a href="{% url 'show_index' %}">展示(测试界面)</a></li>
+                    <li><a href="{% url 'login_index' %}">管理列表</a></li>
+                    <li class="active"><a href="{% url 'admin_user_index' %}">用户管理</a></li>
+                    <li><a href="{% url 'admin_goods_index' %}">商品管理</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div id='username'><a href="{% url 'logout_index' %}">登出</a> 欢迎您，管理员 </div>
-
     <table>
         <tr>
-            <td>
-                <a href="{% url 'admin_user_index' %}">用户管理界面</a>
-            </td>
+            <td>用户ID</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>身份</td>
         </tr>
-        <tr>
-            <td>
-                <a href="{% url 'admin_goods_index' %}">商品审核管理界面</a>
-            </td>
-        </tr>
+        
+          {% for user in userdata %}
+          <tr>
+            {% for userinfo in user %}
+              <td>{{userinfo}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+         
     </table>
+
 
 </body>
 
