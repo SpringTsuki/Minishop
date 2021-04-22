@@ -7,6 +7,7 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/website/index_user.js' %}"></script>
+    <script src="{% static 'js/website/index_admin_user.js' %}"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,24 +34,7 @@
             </div>
         </div>
     </nav>
-    <table>
-        <tr>
-            <td>用户ID</td>
-            <td>用户名</td>
-            <td>密码</td>
-            <td>身份</td>
-        </tr>
-        
-          {% for user in userdata %}
-          <tr>
-            {% for userinfo in user %}
-              <td>{{userinfo}}</td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-         
-    </table>
-
+    <table border='1' align='center' cellpadding='100' cellspacing='100' id='list' width='700'></table>
 
 </body>
 

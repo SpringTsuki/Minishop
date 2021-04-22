@@ -115,16 +115,13 @@ def admin_index(request):
     return render(request,'index_admin.html')
 
 def admin_user_index(request):
-    from database.models import user
-    userinfo = user.objects.all()
-    userdata = []
-    for user in userinfo:
-        userdata.append(user.id)
-        userdata.append(user.username)
-        userdata.append(user.password)
-        userdata.append(user.identity)
-    print(userdata)
-    return render(request,'index_admin_user.html',context={'userdata':userdata})
+    if request.method == 'POST':
+        from database.models import user
+        userinfo = user.objects.values()
+        userdata = list(userinfo)
+        print(userdata)
+        return JsonResponse({"userdata":userdata})
+    return render(request,'index_admin_user.html')
 
 def admin_goods_index(request):
     return render(request,'index_admin_goods.html')
