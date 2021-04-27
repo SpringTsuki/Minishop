@@ -3,16 +3,37 @@ function GETID(elementID) {
 }
 
 function checkuser() {
-    var userdata = GETID("username").value;
+    var result = false;
+    var username = GETID("username").value;
     var reg = /^\w{4,15}$/;
     var usertip = GETID("usertip");
     usertip.innerHTML = "";
-    if (reg.test(userdata) == false) {
+    if (reg.test(username) == false) {
         usertip.innerHTML = ("<font color=red>用户名格式不正确，应为4至15位</font>");
         return false;
     } else {
+        $.ajax({
+            type: 'POST',
+            data: {
+                'username': username,
+            },
+            async: false,
+            dataType: 'json',
+            success: function(result) {
+                result_1 = JSON.stringify(result); //JSON数据转化为JSON对象
+                result_2 = eval("(" + result_1 + ")"); //JSON转成数组
+                if (result_2.usertest == false) {
+                    alert("用户名已被注册，请重试");
+                    result = false;
+                }
+            },
+            error: function(data) {
+                result = true;
+            }
+        })
         usertip.innerHTML = "";
-        return true;
+        console.log(result)
+        return result;
     }
 }
 
@@ -48,7 +69,7 @@ function update() {
                     alert("注册成功!");
                     window.location.href = "success/"
                 } else {
-                    alert("用户名已被注册，请重试");
+                    // alert("用户名已被注册，请重试");
                 }
             },
             error: function(data) {

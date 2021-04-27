@@ -83,22 +83,27 @@ def login_index(request):
 
 def reg_index(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
         from database.models import user
-        userinfo = user()
-        userinfo.username = username
-        userinfo.password = password
-        try:
-            userinfo.save()
+        username = request.POST['username']
+        userdata = user.objects.values().filter(username = username)
+        if bool(userdata) == True:
             return HttpResponse(json.dumps({
-                'result':True
-                }))
-        except:
-            return HttpResponse(json.dumps({
-                'result':False
-                }))
+                'usertest':False
+            }))
+        else:
+            password = request.POST['password']
+            userinfo = user()
+            userinfo.username = username
+            userinfo.password = password
+            try:
+                userinfo.save()
+                return HttpResponse(json.dumps({
+                    'result':True
+                    }))
+            except:
+                return HttpResponse(json.dumps({
+                    'result':False
+                    }))
     else:
         return render(request,'index_register.html')
 

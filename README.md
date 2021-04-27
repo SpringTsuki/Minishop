@@ -5,6 +5,11 @@
 
 <p>所需Python包：Django、mysqlclient、pymysql、pillow
 
+
+<p>-----v0.3 update in 20.4.27
+<p>新增管理员用户列表界面
+<p>新增注册可以检测用户是否重复功能
+
 <p>-----v0.2 update in 20.4.14
 <p>新增商品表（待完善）
 <p>新增商品上传功能（待修改完善）
