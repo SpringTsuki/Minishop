@@ -6,7 +6,7 @@
 <p>所需Python包：Django、mysqlclient、pymysql、pillow
 
 
-<p>-----v0.3 update in 20.4.27
+<p>-----v0.32 update in 20.4.27
 <p>新增管理员用户列表界面
 <p>新增注册可以检测用户是否重复功能
 
