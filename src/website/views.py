@@ -129,4 +129,9 @@ def admin_user_index(request):
     return render(request,'index_admin_user.html')
 
 def admin_goods_index(request):
+    if request.method == "POST":
+        from database.models import goodsinfo
+        goodsdata = list(goodsinfo.objects.values())
+        print(goodsdata)
+        return JsonResponse({"goodsdata":goodsdata})
     return render(request,'index_admin_goods.html')

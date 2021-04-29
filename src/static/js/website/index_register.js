@@ -23,15 +23,15 @@ function checkuser() {
                 result_1 = JSON.stringify(result); //JSON数据转化为JSON对象
                 result_2 = eval("(" + result_1 + ")"); //JSON转成数组
                 if (result_2.usertest == false) {
-                    alert("用户名已被注册，请重试");
+                    usertip.innerHTML = ("<font color=red>用户名已被注册，请重试</font>");
                     result = false;
                 }
             },
             error: function(data) {
+                usertip.innerHTML = "";
                 result = true;
             }
         })
-        usertip.innerHTML = "";
         console.log(result)
         return result;
     }
