@@ -9,6 +9,7 @@ from website.views import user_index
 from website.views import admin_index
 from website.views import admin_user_index
 from website.views import admin_goods_index
+from website.views import admin_user_export
 
 
 
@@ -24,4 +25,5 @@ urlpatterns = [
     path('admin_index',admin_index,name='admin_index'),
     path('admin_user_index',admin_user_index,name='admin_user_index'),
     path('admin_goods_index',admin_goods_index,name='admin_goods_index'),
+    path('admin_user_export',admin_user_export,name='admin_user_export'),
 ] 

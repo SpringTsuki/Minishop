@@ -5,7 +5,9 @@ from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
-
+import os
+import xlwt
+import pandas
 import json
 import random
 # Create your views here.
@@ -124,9 +126,29 @@ def admin_user_index(request):
         from database.models import user
         userinfo = user.objects.values()
         userdata = list(userinfo)
-        print(userdata)
         return JsonResponse({"userdata":userdata})
     return render(request,'index_admin_user.html')
+
+def admin_user_export(request):
+    from database.models import user
+    userinfo = user.objects.values()
+    userdata = list(userinfo)
+    print(userdata)
+    data = pandas.DataFrame(userdata)
+    order = ['id','username','password','identity']
+    data = data[order]
+    column_map = {
+        'id':'用户ID',
+        'username':'用户名',
+        'password':'用户密码',
+        'identity':'用户身份',
+    }
+    data.rename(columns = column_map,inplace = True)
+    file_path = pandas.ExcelWriter('Userdata.xlsx')
+    data.fillna(' ',inplace = True)
+    data.to_excel(file_path,encoding = 'utf-8', index = False)
+    file_path.save()
+    return HttpResponse("导出测试中")
 
 def admin_goods_index(request):
     if request.method == "POST":
