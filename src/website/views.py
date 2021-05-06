@@ -148,7 +148,7 @@ def admin_user_export(request):
     data.fillna(' ',inplace = True)
     data.to_excel(file_path,encoding = 'utf-8', index = False)
     file_path.save()
-    return HttpResponse("导出测试中")
+    return HttpResponse("导出测试成功")
 
 def admin_goods_index(request):
     if request.method == "POST":
